@@ -15,6 +15,7 @@
             --text-color: #ffffff;
             --card-bg: rgba(50, 30, 50, 0.85);
             --button-gradient: linear-gradient(135deg, #f48fb1, #ff80ab);
+            --button-gradient-hover: linear-gradient(135deg, #ff80ab, #f48fb1);
             --transition-speed: 0.3s;
             --font-family-primary: 'Orbitron', sans-serif;
             --font-family-secondary: 'Roboto', sans-serif;
@@ -36,85 +37,22 @@
 
         header {
             background: var(--primary-color);
-            color: white;
             padding: 2rem 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
-            font-family: var(--font-family-secondary);
             font-size: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            text-shadow: 0 0 5px var(--accent-color);
             animation: pulseGlow 2s infinite;
-        }
-
-        main {
-            padding: 4rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 100%;
-            max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .section h2 {
-            font-family: var(--font-family-secondary);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-            animation: pulseGlow 2s infinite;
-        }
-
-        ul {
-            list-style: none;
-            margin-top: 1rem;
-            padding: 0;
-        }
-
-        li {
-            background: rgba(255, 255, 255, 0.1);
-            margin-bottom: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        li i {
-            margin-right: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .download-button {
-            background: var(--button-gradient);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            animation: pulseGlow 2s infinite;
-        }
-
-        .download-button:hover {
-            background: linear-gradient(135deg, #ff80ab, #f48fb1);
         }
 
         @keyframes pulseGlow {
@@ -128,6 +66,87 @@
                 text-shadow: 0 0 5px var(--accent-color);
             }
         }
+
+        main {
+            padding: 4rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .features, .how-to-use, .next-version {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .features h2, .how-to-use h2, .next-version h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            text-align: center;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .features ul, .how-to-use ul, .next-version ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features li, .how-to-use li, .next-version li {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li i, .how-to-use li i, .next-version li i {
+            margin-right: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--accent-color);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
+            }
+            100% {
+                box-shadow: 0 0 5px var(--accent-color);
+            }
+        }
+
+        .download-button {
+            background: var(--button-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: glow 2s infinite, pulseGlow 2s infinite;
+        }
+
+        .download-button:hover {
+            background: var(--button-gradient-hover);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -136,7 +155,9 @@
     </header>
 
     <main>
-        <div class="section">
+        <div class="project-title"><strong>V1.2 Release</strong></div>
+        
+        <div class="features">
             <h2>Features</h2>
             <ul>
                 <li><i class="fas fa-check-circle"></i> Nexto (GC)</li>
@@ -146,30 +167,33 @@
                 <li><i class="fas fa-check-circle"></i> Seer (Gold)</li>
                 <li><i class="fas fa-check-circle"></i> Karma (Gold)</li>
                 <li><i class="fas fa-check-circle"></i> Bumblebee (Platinum)</li>
+                <li><i class="fas fa-check-circle"></i> Force Jump (Simple or Double)</li>
+                <li><i class="fas fa-check-circle"></i> Goal Celebration edited</li>
+                <li><i class="fas fa-check-circle"></i> Auto BallCam</li>
+                <li><i class="fas fa-check-circle"></i> Dodge Demo</li>
+                <li><i class="fas fa-check-circle"></i> And a lot more!</li>
             </ul>
         </div>
 
-        <div class="section">
+        <div class="how-to-use">
             <h2>How to Use</h2>
             <ul>
-                <li><i class="fas fa-keyboard"></i> BallCam is set to "space". Edit `main.py` to change.</li>
-                <li><i class="fas fa-keyboard"></i> Jump Force Simple is "u". Change in `bot.py`.</li>
-                <li><i class="fas fa-keyboard"></i> Jump Force Double is "i". Change in `bot.py`.</li>
+                <li><i class="fas fa-keyboard"></i> BallCam is set to "space" key. Delete it by editing <code>rlmarlbot/main.py</code> at line 855.</li>
+                <li><i class="fas fa-keyboard"></i> Jump Force Simple is set to "u." Update it in <code>marlbot/nexto/bot.py</code>.</li>
+                <li><i class="fas fa-keyboard"></i> Jump Force Double is set to "i." Update it in <code>marlbot/nexto/bot.py</code>.</li>
             </ul>
         </div>
 
-        <div class="section">
+        <div class="next-version">
             <h2>What's Next in V1.3?</h2>
             <ul>
                 <li><i class="fas fa-arrow-right"></i> Auto Chat</li>
                 <li><i class="fas fa-arrow-right"></i> New Kickoff for human-like gameplay</li>
-                <li><i class="fas fa-arrow-right"></i> Additional features</li>
+                <li><i class="fas fa-arrow-right"></i> Other features</li>
             </ul>
         </div>
 
-        <a href="https://drive.google.com/file/d/1a_15dCWTELrXLPCmkxVJ-z0WoaNhPHXq/view?usp=sharing" class="download-button">
-            <i class="fas fa-download"></i> Download KittyBot
-        </a>
+        <a href="https://drive.google.com/file/d/1a_15dCWTELrXLPCmkxVJ-z0WoaNhPHXq/view?usp=sharing" class="download-button"><i class="fas fa-download"></i> Download KittyBot</a>
     </main>
 </body>
 </html>
